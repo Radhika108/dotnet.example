@@ -1,0 +1,97 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+name: $(Build.SourceBranchName)_$(Build.BuildId)_$(Date:yyyy-MM-dd)_$(Hours)-$(Minutes)_$(Rev:rr)_$(Build.DefinitionName)
+
+
+parameters:
+  - name: repositoryname
+    type: string
+    default: TestRepo
+
+### SAST
+  - name: runsonarqube
+    type: boolean
+    default: false
+  - name: runblackduck
+    type: boolean
+    default: false
+  - name: runcredscan
+    type: boolean
+    default: false
+  - name: doblackduckrapidscan
+    type: boolean
+    default: false
+
+### Deployment Options
+  - name: RunDeployment
+    displayName: Run Deployment
+    type: boolean 
+    default: true
+
+### Build Options
+  - name: buildPlatform # Specify the platform you want to build such as Win32, x86, x64 or any cpu.
+    type: string
+    default: 'Any CPU'
+  - name: buildConfiguration # Specify the configuration you want to build such as debug or release.
+    type: string
+    values:
+      - Debug
+      - Release
+    default: 'Release'
+  - name: sdkVersion
+    type: string
+    default: '6.x' 
+    
+trigger:
+- none
+pr:
+  branches:
+    include:
+      - '*'
+
+# resources:
+#   repositories:
+#   - repository: CICDTemplate
+#     type: githubenterprise
+#     name: IT4SC-DevOps/CICDTemplate
+#     endpoint: DEVOPS-GIT-PID4C83
+#     ref: feature/#834311_node_blackduck_version
+       
+
+extends:
+  template: CI_pipeline_template.yml@self
+  parameters:
+    buildtype: 'dotnet'
+    checkoutrepo:
+      checkout: self
+      path: ${{ parameters.repositoryname }}
+      lfs: false
+    rootpath: pipeline_tests/DotnetTemplateTester
+    productname: 'dotnet_test_product'
+    #Build Options
+    buildPlatform: ${{parameters.buildPlatform}}
+    buildConfiguration: ${{parameters.buildConfiguration}}
+    sdkVersion: ${{parameters.sdkVersion}}
+    #SAST
+    sonarqubeprojectkey: $(System.TeamProjectId)_IT4SC-DevOps-Dotnet-Template-Tester
+    runcredscan: ${{ parameters.runcredscan }}
+    runsonarqube: ${{ parameters.runsonarqube }}
+    runblackduck: ${{ parameters.runblackduck }}
+    blackduckprojectname: MO360-CP-DEMO
+    failbdscan: false
+    doblackduckrapidscan: false
+    runsechub: false
+    sechubprojectname: 'mo360cp-mocked'
+    sechubpid: 'PID4F80'
+    sechub_endpoint: 'https://sechub-playground.app.corpintra.net'
+    stop_on_yellow: true
+    sechub_apitoken: $(sechub_sandbox_apikey_mo360cp)
+    #Publish
+    publishdirectory: $(Pipeline.Workspace)\build
+    #Deployment Options
+    RunDeployment: ${{ parameters.RunDeployment }}
+
+
