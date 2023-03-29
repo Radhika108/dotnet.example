@@ -7,7 +7,7 @@ name: dotnet_$(Build.BuildId)_$(Date:yyyy-MM-dd)_$(Hours)-$(Minutes)_$(Rev:rr)_$
 parameters:
   - name: repositoryname
     type: string
-    default: TestRepo
+    default: pipeline_tests/DotnetTemplateTester
 
 ### SAST
   - name: runsonarqube
