@@ -57,11 +57,11 @@ extends:
   template: CI_pipeline_template.yml@CICDtemplate
   parameters:
     buildtype: 'dotnet'
-    checkoutrepo:
-      checkout: self
-      path: ${{ parameters.repositoryname }}
-      lfs: false
-    rootpath: pipeline_tests/DotnetTemplateTester
+    #checkoutrepo:
+     # checkout: self
+      #path: ${{ parameters.repositoryname }}
+      #lfs: false
+    #rootpath: pipeline_tests/DotnetTemplateTester
     productname: 'dotnet_test_product'
     #Build Options
     buildPlatform: ${{parameters.buildPlatform}}
