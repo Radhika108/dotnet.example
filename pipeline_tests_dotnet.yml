@@ -51,8 +51,8 @@ resources:
       type: githubenterprise
       name: IT4SC-DevOps/CICDTemplate
       endpoint: MO360ComputePlatformGitHubConnection
-      ref: refs/tags/v5.0.5
-
+      #ref: refs/tags/v5.0.5
+      ref: feature/dotnet_bug
 extends:
   template: CI_pipeline_template.yml@CICDtemplate
   parameters:
