@@ -2,9 +2,7 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
-
-name: $(Build.SourceBranchName)_$(Build.BuildId)_$(Date:yyyy-MM-dd)_$(Hours)-$(Minutes)_$(Rev:rr)_$(Build.DefinitionName)
-
+name: dotnet_$(Build.BuildId)_$(Date:yyyy-MM-dd)_$(Hours)-$(Minutes)_$(Rev:rr)_$(Build.DefinitionName)
 
 parameters:
   - name: repositoryname
@@ -44,25 +42,19 @@ parameters:
   - name: sdkVersion
     type: string
     default: '6.x' 
-    
-trigger:
-- none
-pr:
-  branches:
-    include:
-      - '*'
 
-# resources:
-#   repositories:
-#   - repository: CICDTemplate
-#     type: githubenterprise
-#     name: IT4SC-DevOps/CICDTemplate
-#     endpoint: DEVOPS-GIT-PID4C83
-#     ref: feature/#834311_node_blackduck_version
-       
+trigger: none
+
+resources:
+  repositories:
+    - repository: CICDTemplate
+      type: githubenterprise
+      name: IT4SC-DevOps/CICDTemplate
+      endpoint: MO360ComputePlatformGitHubConnection
+      ref: refs/tags/v5.0.5
 
 extends:
-  template: CI_pipeline_template.yml@self
+  template: CI_pipeline_template.yml@CICDtemplate
   parameters:
     buildtype: 'dotnet'
     checkoutrepo:
