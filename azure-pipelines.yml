@@ -53,11 +53,11 @@ parameters:
 steps:   
   - task: NuGetAuthenticate@1
     inputs:
-      nuGetServiceConnections: 'Nuget2'
+      nuGetServiceConnections: 'MO360ComputePlatformArtifactoryConnectionNUGET'
   - task: NuGetCommand@2
     inputs:
       command: 'restore'
       restoreSolution: '**/*.sln'
       feedsToUse: 'config'
       nugetConfigPath: 'NuGet.config'
-      externalFeedCredentials: 'Nuget2'
+      externalFeedCredentials: 'MO360ComputePlatformArtifactoryConnectionNUGET'
