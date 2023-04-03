@@ -1,0 +1,93 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+name: $(Build.SourceBranchName)_$(Build.BuildId)_$(Date:yyyy-MM-dd)_$(Hours)-$(Minutes)_$(Rev:rr)_$(Build.DefinitionName)
+
+
+parameters:
+  - name: repositoryname
+    type: string
+    default: TestRepo
+
+### SAST
+  - name: runsonarqube
+    type: boolean
+    default: false
+  - name: runblackduck
+    type: boolean
+    default: false
+  - name: runcredscan
+    type: boolean
+    default: false
+  - name: doblackduckrapidscan
+    type: boolean
+    default: false
+
+### Deployment Options
+  - name: RunDeployment
+    displayName: Run Deployment
+    type: boolean 
+    default: true
+
+### Build Options
+  - name: buildPlatform # Specify the platform you want to build such as Win32, x86, x64 or any cpu.
+    type: string
+    default: 'Any CPU'
+  - name: buildConfiguration # Specify the configuration you want to build such as debug or release.
+    type: string
+    values:
+      - Debug
+      - Release
+    default: 'Release'
+  - name: sdkVersion
+    type: string
+    default: '6.x' 
+  - name: NugetServiceConnection
+    type: string
+    default: Nuget2
+  - name: nugetConfigPath
+    type: string
+    default: 'Nuget.config'
+    
+trigger:
+- none
+pr:
+  branches:
+    include:
+      - '*'
+
+# resources:
+#   repositories:
+#   - repository: CICDTemplate
+#     type: githubenterprise
+#     name: IT4SC-DevOps/CICDTemplate
+#     endpoint: DEVOPS-GIT-PID4C83
+#     ref: feature/#834311_node_blackduck_version
+       
+
+
+steps:   
+  - task: NuGetAuthenticate@1
+    inputs:
+      nuGetServiceConnections: 'Nuget2'
+  - task: NuGetCommand@2
+    inputs:
+      command: 'restore'
+      restoreSolution: '**/*.sln'
+      feedsToUse: 'config'
+      nugetConfigPath: 'NuGet.config'
+      externalFeedCredentials: 'Nuget2'
