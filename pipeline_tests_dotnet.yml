@@ -52,7 +52,7 @@ resources:
       name: IT4SC-DevOps/CICDTemplate
       endpoint: MO360ComputePlatformGitHubConnection
       #ref: refs/tags/v5.0.5
-      ref: feature/dotnet_bug
+      ref: feature/nuget_auth
 extends:
   template: CI_pipeline_template.yml@CICDtemplate
   parameters:
@@ -75,6 +75,7 @@ extends:
     blackduckprojectname: MO360-CP-DEMO
     failbdscan: false
     doblackduckrapidscan: false
+    NugetServiceConnection: 'MO360ComputePlatformArtifactoryConnectionNUGET'
     runsechub: false
     sechubprojectname: 'mo360cp-mocked'
     sechubpid: 'PID4F80'
