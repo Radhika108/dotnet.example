@@ -58,5 +58,5 @@ steps:
       command: 'restore'
       restoreSolution: '**/*.sln'
       feedsToUse: 'config'
-      #nugetConfigPath: 'NuGet.config'
+      nugetConfigPath: 'NuGet.config'
       externalFeedCredentials: 'MO360ComputePlatformArtifactoryConnectionNUGET'
