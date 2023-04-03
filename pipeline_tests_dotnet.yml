@@ -76,7 +76,7 @@ extends:
     failbdscan: false
     doblackduckrapidscan: false
     NugetServiceConnection: 'MO360ComputePlatformArtifactoryConnectionNUGET'
-    nugetConfigPath: .nuget/pipeline/Nuget.config
+    nugetConfigPath: $(Pipeline.Workspace)\Nuget.config
     runsechub: false
     sechubprojectname: 'mo360cp-mocked'
     sechubpid: 'PID4F80'
