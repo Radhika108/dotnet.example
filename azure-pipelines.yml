@@ -42,7 +42,7 @@ parameters:
     default: '6.x' 
   - name: NugetServiceConnection
     type: string
-    default: MO360ComputePlatformArtifactoryConnectionNUGET
+    default: Nuget2
   - name: nugetConfigPath
     type: string
     default: 'Nuget.config'
