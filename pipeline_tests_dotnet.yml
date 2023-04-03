@@ -76,7 +76,7 @@ extends:
     failbdscan: false
     doblackduckrapidscan: false
     NugetServiceConnection: 'MO360ComputePlatformArtifactoryConnectionNUGET'
-    nugetConfigPath: '*/Nuget.config'
+    nugetConfigPath: 'Nuget.config'
     runsechub: false
     sechubprojectname: 'mo360cp-mocked'
     sechubpid: 'PID4F80'
