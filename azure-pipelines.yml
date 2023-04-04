@@ -1,6 +1,6 @@
 name: $(Build.SourceBranchName)_$(Build.BuildId)_$(Date:yyyy-MM-dd)_$(Hours)-$(Minutes)_$(Rev:rr)_$(Build.DefinitionName)
 
-pool: DOTAzure-Ubuntu-22.04
+pool: MO360-Compute-Platform-Agentpool-nonprod
 
 parameters:
   - name: repositoryname
@@ -42,7 +42,7 @@ parameters:
     default: '6.x' 
   - name: NugetServiceConnection
     type: string
-    default: Nuget
+    default: MO360ComputePlatformArtifactoryConnectionNUGET
   - name: nugetConfigPath
     type: string
     default: 'Nuget.config'
@@ -52,7 +52,7 @@ parameters:
 steps:   
   - task: NuGetAuthenticate@1
     inputs:
-      nuGetServiceConnections: 'Nuget'
+      nuGetServiceConnections: 'MO360ComputePlatformArtifactoryConnectionNUGET'
   - task: NuGetCommand@2
     inputs:
       #artifactoryService: ${{ parameters.NugetServiceConnection }}
@@ -61,4 +61,4 @@ steps:
       feedsToUse: 'config'
       nugetConfigPath: 'NuGet.config'
       #externalFeedCredentials: 'Nuget'
-      externalEndpoints: 'Nuget'
+      externalEndpoints: 'MO360ComputePlatformArtifactoryConnectionNUGET'
