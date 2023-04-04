@@ -42,6 +42,12 @@ parameters:
   - name: sdkVersion
     type: string
     default: '6.x' 
+  - name: NugetServiceConnection
+    type: string
+    default: MO360ComputePlatformArtifactoryConnectionNUGET
+  - name: nugetConfigPath
+    type: string
+    default: 'NuGet.config'
 
 trigger: none
 
