@@ -42,7 +42,7 @@ parameters:
     default: '6.x' 
   - name: NugetServiceConnection
     type: string
-    default: Nuget
+    default: Nuget2
   - name: nugetConfigPath
     type: string
     default: 'Nuget.config'
@@ -52,7 +52,7 @@ parameters:
 steps:   
   - task: NuGetAuthenticate@1
     inputs:
-      nuGetServiceConnections: 'Nuget'
+      nuGetServiceConnections: 'Nuget2'
   - task: NuGetCommand@2
     inputs:
       #artifactoryService: ${{ parameters.NugetServiceConnection }}
@@ -61,4 +61,4 @@ steps:
       feedsToUse: 'config'
       nugetConfigPath: 'NuGet.config'
       #externalFeedCredentials: 'Nuget'
-      externalEndpoints: 'Nuget'
+      externalEndpoints: 'Nuget2'
