@@ -42,7 +42,7 @@ parameters:
     default: '6.x' 
   - name: NugetServiceConnection
     type: string
-    default: Nuget1
+    default: Nuget
   - name: nugetConfigPath
     type: string
     default: 'Nuget.config'
@@ -52,13 +52,13 @@ parameters:
 steps:   
   - task: NuGetAuthenticate@1
     inputs:
-      nuGetServiceConnections: 'Nuget1'
+      nuGetServiceConnections: 'Nuget'
   - task: NuGetCommand@2
     inputs:
-      artifactoryService: ${{ parameters.NugetServiceConnection }}
+      #artifactoryService: ${{ parameters.NugetServiceConnection }}
       command: 'restore'
       restoreSolution: '**/*.sln'
       feedsToUse: 'config'
       nugetConfigPath: 'NuGet.config'
-      #externalFeedCredentials: 'Nuget1'
-      #externalEndpoints: 'Nuget1'
+      #externalFeedCredentials: 'Nuget'
+      externalEndpoints: 'Nuget'
