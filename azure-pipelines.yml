@@ -45,7 +45,7 @@ parameters:
     default: MO360ComputePlatformArtifactoryConnectionNUGET
   - name: nugetConfigPath
     type: string
-    default: 'nuget.config'
+    default: 'NuGet.config'
     
 
        
@@ -55,10 +55,8 @@ steps:
       nuGetServiceConnections: 'MO360ComputePlatformArtifactoryConnectionNUGET'
   - task: NuGetCommand@2
     inputs:
-      #artifactoryService: ${{ parameters.NugetServiceConnection }}
       command: 'restore'
       restoreSolution: '**/*.sln'
       feedsToUse: 'config'
-      nugetConfigPath: 'nuget.config'
-      #externalFeedCredentials: 'Nuget'
+      nugetConfigPath: 'NuGet.config'
       externalEndpoints: 'MO360ComputePlatformArtifactoryConnectionNUGET'
