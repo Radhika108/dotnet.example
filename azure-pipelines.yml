@@ -42,7 +42,7 @@ parameters:
     default: '6.x' 
   - name: NugetServiceConnection
     type: string
-    default: Nuget2
+    default: Nuget
   - name: nugetConfigPath
     type: string
     default: 'Nuget.config'
@@ -52,11 +52,11 @@ parameters:
 steps:   
   - task: NuGetAuthenticate@1
     inputs:
-      nuGetServiceConnections: 'Nuget2'
+      nuGetServiceConnections: 'Nuget'
   - task: NuGetCommand@2
     inputs:
       command: 'restore'
       restoreSolution: '**/*.sln'
       feedsToUse: 'config'
       nugetConfigPath: 'NuGet.config'
-      externalFeedCredentials: 'Nuget2'
+      externalFeedCredentials: 'Nuget'
