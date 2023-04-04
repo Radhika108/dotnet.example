@@ -42,7 +42,7 @@ parameters:
     default: '6.x' 
   - name: NugetServiceConnection
     type: string
-    default: MO360ComputePlatformArtifactoryConnectionNUGET
+    default: Nuget
   - name: nugetConfigPath
     type: string
     default: 'Nuget.config'
@@ -52,7 +52,7 @@ parameters:
 steps:   
   - task: NuGetAuthenticate@1
     inputs:
-      nuGetServiceConnections: 'MO360ComputePlatformArtifactoryConnectionNUGET'
+      nuGetServiceConnections: 'Nuget'
   - task: NuGetCommand@2
     inputs:
       #artifactoryService: ${{ parameters.NugetServiceConnection }}
@@ -61,4 +61,4 @@ steps:
       feedsToUse: 'config'
       nugetConfigPath: 'NuGet.config'
       #externalFeedCredentials: 'Nuget'
-      externalEndpoints: 'MO360ComputePlatformArtifactoryConnectionNUGET'
+      externalEndpoints: 'Nuget'
