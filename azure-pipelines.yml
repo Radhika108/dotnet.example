@@ -55,9 +55,10 @@ steps:
       nuGetServiceConnections: 'Nuget1'
   - task: NuGetCommand@2
     inputs:
-      artifactoryService: ${{ parameters.NugetServiceConnection }}
+      #artifactoryService: ${{ parameters.NugetServiceConnection }}
       command: 'restore'
       restoreSolution: '**/*.sln'
       feedsToUse: 'config'
       nugetConfigPath: 'NuGet.config'
-      externalFeedCredentials: 'Nuget1'
+      #externalFeedCredentials: 'Nuget1'
+      externalEndpoints: 'Nuget1'
