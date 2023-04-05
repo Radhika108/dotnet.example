@@ -42,7 +42,7 @@ parameters:
     default: '7.x' 
   - name: NugetServiceConnection
     type: string
-    default: MO360ComputePlatformArtifactoryConnectionNUGET
+    default: MO360ComputePlatformArtifactoryConnection
   - name: nugetConfigPath
     type: string
     default: 'NuGet.config'
@@ -50,13 +50,12 @@ parameters:
 
        
 steps:   
-  - task: NuGetAuthenticate@1
+
+  - task: ArtifactoryNuGet@2
     inputs:
-      nuGetServiceConnections: 'MO360ComputePlatformArtifactoryConnectionNUGET'
-  - task: NuGetCommand@2
-    inputs:
-      command: 'restore'
-      restoreSolution: '**/*.sln'
-      feedsToUse: 'config'
-      nugetConfigPath: 'NuGet.config'
-      externalEndpoints: 'MO360ComputePlatformArtifactoryConnectionNUGET'
+        command: 'restore'
+        artifactoryService: ${{ parameters.NugetServiceConnection}}
+        #artifactoryService: 'DEVOPS-JFROG-PID4C83'
+        targetResolveRepo: 'nuget-opensource-virtual'
+        solutionPath: '${{parameters.solution}}'
+        nugetProtocolVersion: 'v3'
