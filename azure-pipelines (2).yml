@@ -50,9 +50,9 @@ parameters:
 
        
 steps:   
-  - task: NuGetAuthenticate@1
-    inputs:
-      nuGetServiceConnections: 'DEVOPS-JFROG-PID4C83'
+  #- task: NuGetAuthenticate@1
+   # inputs:
+    #  nuGetServiceConnections: 'DEVOPS-JFROG-PID4C83'
   #- task: NuGetCommand@2
   #  inputs:
   #    #artifactoryService: 'DEVOPS-JFROG-PID4C83'
