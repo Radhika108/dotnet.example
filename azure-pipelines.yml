@@ -20,7 +20,9 @@ parameters:
   - name: doblackduckrapidscan
     type: boolean
     default: false
-
+  - name: solution # Relative path from repo root of the solution(s) or MSBuild project to run. 
+    type: string
+    default: '**/*.sln'
 ### Deployment Options
   - name: RunDeployment
     displayName: Run Deployment
