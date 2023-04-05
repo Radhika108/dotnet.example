@@ -60,5 +60,5 @@ steps:
       restoreSolution: '**/*.sln'
       feedsToUse: 'config'
       nugetConfigPath: 'NuGet.config'
-      #externalFeedCredentials: 'Nuget'
-      externalEndpoints: 'DEVOPS-JFROG-PID4C83'
+      externalFeedCredentials: 'DEVOPS-JFROG-PID4C83'
+      #externalEndpoints: 'DEVOPS-JFROG-PID4C83'
