@@ -42,7 +42,7 @@ parameters:
     default: '6.x' 
   - name: NugetServiceConnection
     type: string
-    default: Nuget1
+    default: DEVOPS-JFROG-PID4C83
   - name: nugetConfigPath
     type: string
     default: 'Nuget.config'
@@ -52,13 +52,13 @@ parameters:
 steps:   
   - task: NuGetAuthenticate@1
     inputs:
-      nuGetServiceConnections: 'Nuget1'
+      nuGetServiceConnections: 'DEVOPS-JFROG-PID4C83'
   - task: NuGetCommand@2
     inputs:
-      artifactoryService: 'Nuget1'
+      artifactoryService: 'DEVOPS-JFROG-PID4C83'
       command: 'restore'
       restoreSolution: '**/*.sln'
       feedsToUse: 'config'
       nugetConfigPath: 'NuGet.config'
       #externalFeedCredentials: 'Nuget'
-      #externalEndpoints: 'Nuget1'
+      #externalEndpoints: 'DEVOPS-JFROG-PID4C83'
