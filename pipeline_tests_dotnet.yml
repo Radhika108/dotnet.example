@@ -44,7 +44,7 @@ parameters:
     default: '6.x' 
   - name: NugetServiceConnection
     type: string
-    default: MO360ComputePlatformArtifactoryConnectionNUGET
+    default: MO360ComputePlatformArtifactoryConnection
   - name: nugetConfigPath
     type: string
     default: 'NuGet.config'
@@ -81,7 +81,7 @@ extends:
     blackduckprojectname: MO360-CP-DEMO
     failbdscan: false
     doblackduckrapidscan: false
-    NugetServiceConnection: 'MO360ComputePlatformArtifactoryConnectionNUGET'
+    NugetServiceConnection: 'MO360ComputePlatformArtifactoryConnection'
     nugetConfigPath: 'NuGet.config'
     runsechub: false
     sechubprojectname: 'mo360cp-mocked'
