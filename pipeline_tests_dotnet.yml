@@ -41,7 +41,7 @@ parameters:
     default: 'Release'
   - name: sdkVersion
     type: string
-    default: '6.x' 
+    default: '7.x' 
   - name: NugetServiceConnection
     type: string
     default: MO360ComputePlatformArtifactoryConnection
