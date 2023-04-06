@@ -1,6 +1,6 @@
 name: $(Build.SourceBranchName)_$(Build.BuildId)_$(Date:yyyy-MM-dd)_$(Hours)-$(Minutes)_$(Rev:rr)_$(Build.DefinitionName)
 
-pool: MO360ComputePlatformAgentpoolNonprod
+#pool: MO360ComputePlatformAgentpoolNonprod
 
 parameters:
   - name: repositoryname
