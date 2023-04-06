@@ -73,6 +73,7 @@ extends:
     buildPlatform: ${{parameters.buildPlatform}}
     buildConfiguration: ${{parameters.buildConfiguration}}
     sdkVersion: ${{parameters.sdkVersion}}
+    NugetartifactsFeeds: 'true'
     #SAST
     sonarqubeprojectkey: $(System.TeamProjectId)_IT4SC-DevOps-Dotnet-Template-Tester
     runcredscan: ${{ parameters.runcredscan }}
