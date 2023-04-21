@@ -30,7 +30,7 @@ resources:
     
   pipelines:                         # Pipeline resource, for the pipeline to be deployed
   - pipeline: resourcePipeline       # Identifier for the resource used in pipeline resource variables - DO NOT change
-    source: DEMO\NONPROD\CICD\CI_demo-demoproddocker_pipeline  # name of the pipeline that produces an artifact (Full ADO Path must be specified, for triggers to work)
+    source: TEST_PIPELINES\demo-demoproddocker\CI_demo-demoproddocker  # name of the pipeline that produces an artifact (Full ADO Path must be specified, for triggers to work)
     trigger: true                    # Run this pipeline when any run of CI pipeline completes
 
        
