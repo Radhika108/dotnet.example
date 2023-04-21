@@ -9,4 +9,12 @@ variables:
   - name: ProductProdEnvironments
     value: prod
   - name: ARMServiceConnection
-    value: sc-arm-cat-nonprod
+    value: sc-arm-demo-dev
+  - name: containerRegistryUrl
+    value: crdemo1devneu.azurecr.io
+  - name: DOCKERSERVICECONNECTION
+    value: sc-acr-demo-dev
+  - name: imageRepository
+    value: demo
+  - name: imageRepositoryTag
+    value: latest
