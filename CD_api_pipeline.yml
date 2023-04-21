@@ -1,0 +1,38 @@
+# CD Pipeline for <PRODUCT-NAME> <MODULE-NAME>
+# Make sure that variable groups are setup for each environment <PRODUCT-NAME>_<PRODUCT-ENV>
+
+name: "<PRODUCT-NAME>_${{parameters.TargetEnvironment}}_DEPLOY_$(rev:r)" # The name of your deployment/release
+
+
+trigger: none  # do not trigger on changes in spokes-infrastructure-repo
+pr: none       # do not trigger on pull requests in spokes-infrastructure-repo
+
+parameters:
+### Manual Deployment Parameters
+- name: Build_ID                   # For manual deployments, the ID of the build/run, 'none' for latest build
+  type: string
+  default: 'none'
+
+resources:
+  repositories:                      
+  - repository: CICDTemplate 
+    type: githubenterprise
+    name: IT4SC-DevOps/CICDTemplate
+    endpoint: MO360ComputePlatformGitHubConnection
+    ref: refs/tags/v6.0.2            # Use Current Release https://git.i.mercedes-benz.com/IT4SC-DevOps/CICDTemplate/releases
+    
+  pipelines:                         # Pipeline resource, for the pipeline to be deployed
+  - pipeline: resourcePipeline       # Identifier for the resource used in pipeline resource variables - DO NOT change
+    source: DEMO\NONPROD\CICD\CI_demo-demoproddocker_pipeline  # name of the pipeline that produces an artifact (Full ADO Path must be specified, for triggers to work)
+    trigger: true                    # Run this pipeline when any run of CI pipeline completes
+
+       
+extends:
+  template: CD_pipeline_template.yml@CICDTemplate
+  parameters:
+    ProductEnvironments: 'dev,int'      # The prodcut environments on NON-PROD MO360 Compute Platform
+    ProductProdEnvironments: 'prod'     # The prodcut environments on PROD MO360 Compute Platform
+    DeploymentType: 'docker_appservice' # The deployment type of your project
+    ProductName: 'demo'       # The name of the product utilizing the Template
+    Build_ID: ${{parameters.Build_ID}}  # For manual builds, the ID of the build/run
+    WebAppName: app-demo-demo-demoproddocker-{ENV}-neu # The name of the Azure App Service, {ENV} gets replaced with current environment automatically

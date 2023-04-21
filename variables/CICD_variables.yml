@@ -1,0 +1,12 @@
+variables:
+  - name: CIpool
+    value: 'DOTAzure-Ubuntu-Latest'
+  - name: CDpool
+    value: 'DOTAzure-Windows-Latest'
+    #value: 'DOTAzure-Ubuntu-Latest'
+  - name: ProductEnvironments
+    value: dev
+  - name: ProductProdEnvironments
+    value: prod
+  - name: ARMServiceConnection
+    value: sc-arm-cat-nonprod
