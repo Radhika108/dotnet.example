@@ -18,7 +18,6 @@ parameters:
   default: app-demo-demo-demoproddocker-{ENV}-neu
 - name: TargetEnvironment
   default: dev
-  ### Manual Deployment Parameters
 - name: Build_ID # For manual builds, The ID of the Build/run
   type: string
   default: ""
