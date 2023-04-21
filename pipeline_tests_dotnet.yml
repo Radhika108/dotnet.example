@@ -58,7 +58,7 @@ resources:
       name: IT4SC-DevOps/CICDTemplate
       endpoint: MO360ComputePlatformGitHubConnection
       #ref: refs/tags/v5.0.5
-      ref: feature/nuget_auth
+      ref: refs/tags/v6.0.2
 extends:
   template: CI_pipeline_template.yml@CICDtemplate
   parameters:
