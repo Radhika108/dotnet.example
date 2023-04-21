@@ -91,7 +91,7 @@ extends:
     stop_on_yellow: true
     sechub_apitoken: $(sechub_sandbox_apikey_mo360cp)
     #Publish
-    publishdirectory: $(Pipeline.Workspace)\build
+    publishdirectory: $(Pipeline.Workspace)\test
     #Deployment Options
     RunDeployment: ${{ parameters.RunDeployment }}
 
